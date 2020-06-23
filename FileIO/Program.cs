@@ -29,6 +29,8 @@ namespace FileIO
 
             fileIO.WriteFile(projectDirectory + "\\test.txt", writeData);
 
+
+            // File 읽기 -- 1
             List<string> readData = new List<string>();
             readData = fileIO.ReadFile(projectDirectory + "\\test.txt");
 
@@ -37,6 +39,22 @@ namespace FileIO
                 Console.WriteLine(data);
             }
 
+            // File 읽기 -- 2
+            string[] readFile = File.ReadAllText(projectDirectory + "\\test.txt").Split("\n");
+            //string[] readFile = File.ReadAllLines(projectDirectory + "\\test.txt");
+            foreach(string item in readFile)
+            {
+                Console.WriteLine(item);
+            }
+
+            // File 및 폴더 검색(하위 폴더 포함)
+            //string[] files = Directory.GetFiles(@"D:\호비\", "*.MP4", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(@"D:\호비\", "", SearchOption.AllDirectories);
+            foreach(string file in files)
+            {
+                if (Directory.Exists(file)) Console.WriteLine("============");
+                Console.WriteLine(file);
+            }
 
             //// File Write
             //StreamWriter sw = new StreamWriter(new FileStream("a.txt", FileMode.Create));
