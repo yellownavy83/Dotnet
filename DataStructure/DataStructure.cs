@@ -64,6 +64,24 @@ namespace DataStructure
                 Console.WriteLine(student);
             }
 
+            ////////////////////////////////////////////////////////
+            /// List 추가 시 기존 항목 체크
+            Console.WriteLine(Environment.NewLine + "----------- List Add or Create 작업 -----");
+            if (studentList.Exists(x => x.Name.Equals("Tom")))
+            {
+                Student value = studentList.Find(x => x.Name.Equals("Tom"));
+                Console.WriteLine(value.ToString());
+                value.Age = 100;
+            }
+            else
+            {
+                studentList.Add(new Student("aaa", 11, 90.0, true));
+            }
+            foreach (var student in SortedList)
+            {
+                Console.WriteLine(student);
+            }
+
             Console.Read();
 
         }

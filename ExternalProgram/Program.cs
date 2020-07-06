@@ -18,6 +18,25 @@ namespace ExternalProgram
             Console.WriteLine(result2);
             string result3 = externalProcess.GetResult("/c dir");
             Console.WriteLine(result3);
+
+            //////////////////////////////////////////////////////////
+            // 외부 프로그램으로 parameter 전달이 아닌 standard input 전달 시
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = @".\SIGNAGE.EXE";
+            startInfo.CreateNoWindow = false;
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardInput = true;
+            startInfo.RedirectStandardError = true;
+
+            Process process = new Process();
+            process.StartInfo = startInfo;
+            process.Start();
+
+            process.StandardInput.WriteLine("ABCDEFG");
+            process.StandardInput.Flush();
+            process.Close();
+
         }
 
         static private string RunProcess(String FileName, String Args)
