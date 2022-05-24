@@ -32,3 +32,12 @@ HttpClient client = new HttpClient();
 var res = client.GetAsync("http://127.0.0.1:8080/helloworld").Result;
 Console.WriteLine("Response: " + res.StatusCode + " - " + res.Content.ReadAsStringAsync().Result);
 
+
+// JSON Sample
+JObject json = new JObject();
+json["name"] = "John Doe";
+json["salary"] = 300100;
+string jsonStr = json.ToString();
+Console.WriteLine("Json : " + jsonStr);
+JObject json2 = JObject.Parse(jsonStr);
+Console.WriteLine($"Name : {json2["name"]}, Salary : {json2["salary"]}");
